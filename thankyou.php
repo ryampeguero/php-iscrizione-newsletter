@@ -22,7 +22,7 @@ session_start();
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col">
-                <div class="alert alert-success">
+                <div>
                     <a class="btn btn-warning" href="./logout.php">Logout</a>
                 </div>
             </div>

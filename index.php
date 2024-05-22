@@ -16,23 +16,24 @@ $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@ho
 
 <body>
     <div class="container mt-5">
-        <?php if (!isset($_GET["email"])) {
-        ?>
-            <div class="row d-flex justify-content-center">
-                <div class="col-8 border">
-                    <form>
-                        <div class="mb-3">
-                            <label for="myEmail" class="form-label">Inserire Email</label>
-                            <input type="email" class="form-control" id="myEmail" name="email" placeholder="mariorossi@gmail.com" value="">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-8 border">
+                <form>
+                    <div class="mb-3">
+                        <label for="myEmail" class="form-label">Inserire Email</label>
+                        <input type="email" class="form-control" id="myEmail" name="email" placeholder="mariorossi@gmail.com" value="<?php echo isset($_GET["email"]) ?  $_GET["email"] : '' ?>">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            <div class="row">
-                <div class="col">
+        </div>
+        
+            <div class="row mt-4 d-flex justify-content-center">
+                <div class="col-8">
                     <?php
-                } else {
+                    if (isset($_GET["email"])) {
+                        
                     $user_mail = $_GET["email"];
 
                     if (email_control($user_mail, $email_array)) {
