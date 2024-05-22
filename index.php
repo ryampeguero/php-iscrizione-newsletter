@@ -1,6 +1,7 @@
 <?php
-$email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@hotmail.it"];
+require_once __DIR__ . "/functions.php";
 
+$email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@hotmail.it"];
 
 ?>
 <html lang="en">
@@ -28,20 +29,31 @@ $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@ho
                     </form>
                 </div>
             </div>
-            <?php
-        } else {
-            $user_mail = $_GET["email"];
+            <div class="row">
+                <div class="col">
+                    <?php
+                } else {
+                    $user_mail = $_GET["email"];
 
-            if (in_array($user_mail, $email_array)) {
-                session_start();
-            ?>
-                <div class="row">
-                    <h4><?php echo "Benvenuto utente: " . $user_mail;?></h4>
+                    if (email_control($user_mail, $email_array)) {
+                        session_start();
+                    ?>
+                        <div class="alert alert-success">
+                            <h4><?php echo "Benvenuto utente: " . $user_mail; ?></h4>
+                            
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="alert alert-danger">
+                            <h4><?php echo "Non sei registrato"; ?></h4>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
                 </div>
-        <?php
-            }
-        }
-        ?>
+            </div>
     </div>
 </body>
 
