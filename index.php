@@ -23,7 +23,7 @@ $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@ho
                     <form>
                         <div class="mb-3">
                             <label for="myEmail" class="form-label">Inserire Email</label>
-                            <input type="email" class="form-control" id="myEmail" name="email" placeholder="mariorossi@gmail.com">
+                            <input type="email" class="form-control" id="myEmail" name="email" placeholder="mariorossi@gmail.com" value="">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -37,12 +37,8 @@ $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@ho
 
                     if (email_control($user_mail, $email_array)) {
                         session_start();
-                    ?>
-                        <div class="alert alert-success">
-                            <h4><?php echo "Benvenuto utente: " . $user_mail; ?></h4>
-                            
-                        </div>
-                    <?php
+                        $_SESSION["email"] = $user_mail;
+                        header("Location: ./thankyou.php");
                     } else {
                     ?>
                         <div class="alert alert-danger">
