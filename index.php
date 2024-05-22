@@ -2,7 +2,7 @@
 require_once __DIR__ . "/functions.php";
 
 $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@hotmail.it"];
-
+$user_mail = "";
 ?>
 <html lang="en">
 
@@ -19,7 +19,7 @@ $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@ho
 
         <div class="row d-flex justify-content-center">
             <div class="col-8 border">
-                <form>
+                <form action="index.php" method="GET">
                     <div class="mb-3">
                         <label for="myEmail" class="form-label">Inserire Email</label>
                         <input type="email" class="form-control" id="myEmail" name="email" placeholder="mariorossi@gmail.com" value="<?php echo isset($_GET["email"]) ?  $_GET["email"] : '' ?>">
@@ -28,29 +28,20 @@ $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@ho
                 </form>
             </div>
         </div>
-        
-            <div class="row mt-4 d-flex justify-content-center">
-                <div class="col-8">
-                    <?php
-                    if (isset($_GET["email"])) {
-                        
-                    $user_mail = $_GET["email"];
 
-                    if (email_control($user_mail, $email_array)) {
-                        session_start();
-                        $_SESSION["email"] = $user_mail;
-                        header("Location: ./thankyou.php");
-                    } else {
-                    ?>
-                        <div class="alert alert-danger">
-                            <h4><?php echo "Non sei registrato"; ?></h4>
-                        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-8">
                 <?php
-                    }
+                if (isset($_GET["email"])) {
+                    $user_mail = $_GET["email"];
+                    $result = email_control($user_mail, $email_array);
+
+                    if (is_string($result))
+                        echo $result;
                 }
                 ?>
-                </div>
             </div>
+        </div>
     </div>
 </body>
 

@@ -1,4 +1,22 @@
-<?php 
-function email_control($email, $array_to_check){
-    return in_array($email, $array_to_check);
+<?php
+
+
+
+function email_control($email, $array_to_check)
+{
+    if(str_contains($email, ".")){
+        if (in_array($email, $array_to_check)) {
+            session_start();
+            $_SESSION["email"] = $email;
+            header("Location: ./thankyou.php");
+        } else {
+            $answer = "<div class='alert alert-danger'><h4>Non sei registrato</h4></div>";
+            return $answer;
+        }
+    }else{
+        $answer = "<div class='alert alert-danger'><h4>Manca il punto!!</h4></div>";
+        return $answer;
+    }
+    
 }
+
