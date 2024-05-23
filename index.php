@@ -3,6 +3,12 @@ require_once __DIR__ . "/functions.php";
 
 $email_array = ["ryampeguero@gmail.com", "mariorossi@gmail.com", "ilariaverdi@hotmail.it"];
 $user_mail = "";
+if (isset($_SESSION["email"])) {
+    $email_array[] = $_SESSION["email"];
+    session_destroy();
+    echo $_SESSION["email"];
+}
+
 ?>
 <html lang="en">
 

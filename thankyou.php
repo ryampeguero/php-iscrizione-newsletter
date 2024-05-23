@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+session_destroy();
+
 ?>
 <html lang="en">
 
@@ -16,14 +19,8 @@ session_start();
         <div class="row d-flex justify-content-center">
             <div class="col">
                 <div class="alert alert-success">
-                    <h4><?php echo "Benvenuto utente: " . $_SESSION["email"]; ?></h4>
-                </div>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col">
-                <div>
-                    <a class="btn btn-warning" href="./logout.php">Logout</a>
+                    <h4><?php echo "Grazie per esserti scritto utente: " . $_SESSION["email"]; ?></h4>
+                    <a class="btn btn-primary" href="./index.php">Torna indietro</a>
                 </div>
             </div>
         </div>
